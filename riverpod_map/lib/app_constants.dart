@@ -20,7 +20,8 @@ extension MapboxExtension on Mapbox {
   String get value {
     switch (this) {
       case Mapbox.urlTemplate:
-        return 'https://api.mapbox.com/styles/v1/hoanghn190603/clzup26h600jq01qx4pzi5yub/tiles/256/{z}/{x}/{y}@2x?access_token=$mapboxAccessToken';
+        // return 'https://api.mapbox.com/styles/v1/hoanghn190603/clzup26h600jq01qx4pzi5yub/tiles/256/{z}/{x}/{y}@2x?access_token=$mapboxAccessToken';
+        return 'https://api.mapbox.com/styles/v1/hoanghn190603/clzup26h600jq01qx4pzi5yub/wmts?access_token=pk.eyJ1IjoiaG9hbmdobjE5MDYwMyIsImEiOiJjbHp1cGV3ajEwOHIyMmlzOTJnZzJrc3lpIn0.5-ImdoXACPeUizQbk87PZg';
       case Mapbox.standardStyle:
         return 'mapbox://styles/mapbox/standard';
       case Mapbox.standardSatelliteStyle:

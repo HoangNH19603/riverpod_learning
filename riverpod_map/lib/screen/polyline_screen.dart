@@ -15,7 +15,9 @@ class PolylineScreen extends StatelessWidget {
       body: FlutterMap(
           options: const MapOptions(
             initialCenter: LatLng(51.509364, -0.128928), // Center the map over London
-            initialZoom: 9.2,
+            initialZoom: 2,
+            minZoom: 10,
+            maxZoom: 22
           ),
           children: [
             TileLayer(
