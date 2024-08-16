@@ -3,9 +3,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:riverpod_map/app_constants.dart';
 
-class PolylineScreen extends StatelessWidget {
+class PolylineScreen extends StatefulWidget {
   const PolylineScreen({super.key});
 
+  @override
+  State<PolylineScreen> createState() => _PolylineScreenState();
+}
+
+class _PolylineScreenState extends State<PolylineScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

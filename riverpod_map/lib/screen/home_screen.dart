@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_map/screen/google_map_screen.dart';
 import 'package:riverpod_map/screen/map_controller_screen.dart';
+import 'package:riverpod_map/screen/mapbox_screen.dart';
 import 'package:riverpod_map/screen/polyline_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,6 +29,18 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const MapControllerScreen()));
                 },
                 child: const Text('Map Controller Page')),
+            const SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MapboxScreen()));
+                },
+                child: const Text('Mapbox')),
+            const SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const GoogleMapScreen()));
+                },
+                child: const Text('Google Map')),
           ],
         ),
       ),
