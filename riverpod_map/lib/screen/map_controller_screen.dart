@@ -13,11 +13,13 @@ class _MapControllerScreenState extends State<MapControllerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Map Controller Screen')),
+      appBar: AppBar(title: const Text('Openstreetmap')),
       body: FlutterMap(
           options: const MapOptions(
             initialCenter: LatLng(51.509364, -0.128928), // Center the map over London
-            initialZoom: 9.2,
+            initialZoom: 9,
+            minZoom: 5,
+            maxZoom: 22,
           ),
           children: [
             TileLayer(

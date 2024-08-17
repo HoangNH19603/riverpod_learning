@@ -15,20 +15,20 @@ class _PolylineScreenState extends State<PolylineScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Polyline maker Screen'),
+        title: const Text('Mapbox'),
       ),
       body: FlutterMap(
           options: const MapOptions(
             initialCenter: LatLng(51.509364, -0.128928), // Center the map over London
-            initialZoom: 2,
-            minZoom: 10,
+            initialZoom: 9,
+            minZoom: 5,
             maxZoom: 22
           ),
           children: [
             TileLayer(
               urlTemplate: Mapbox.urlTemplate.value,
               additionalOptions: {
-                'accessToken': mapboxAccessToken!,
+                // 'accessToken': mapboxAccessToken!,
                 'id': 'mapbox.mapbox-streets-v8',
               },
               maxNativeZoom: 19,
