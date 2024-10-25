@@ -18,45 +18,59 @@ class _PolylineScreenState extends State<PolylineScreen> {
   LatLng latLng = const LatLng(20.971889, 105.758536);
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mapbox'),
       ),
       body: FlutterMap(
-        mapController: controller,
-        options: MapOptions(initialCenter: latLng, initialZoom: 20, minZoom: 5, maxZoom: 22),
-        children: [
-        TileLayer(
-          tileProvider: CancellableNetworkTileProvider(),
-          // tileProvider: NetworkTileProvider(),
-          urlTemplate: Mapbox.urlTemplate.value,
-          fallbackUrl: Mapbox.urlTemplate.value,
-          additionalOptions: {
-            'accessToken': mapboxAccessToken!,
-            'id': 'mapbox.mapbox-streets-v8',
-          },
-          maxNativeZoom: 19,
-        ),
-        MarkerLayer(
-          markers: [
-            Marker(
-              width: 80.0,
-              height: 80.0,
-              point: latLng,
-              child: const Icon(
-                Icons.location_on,
-                color: Colors.redAccent,
-              ),
+          mapController: controller,
+          options: MapOptions(
+              initialCenter: latLng,
+              initialZoom: 20,
+              minZoom: 5,
+              maxZoom: 22,
+              onMapReady: () {
+                controller.mapEventStream.listen((event) {});
+              }),
+          children: [
+            TileLayer(
+              tileProvider: CancellableNetworkTileProvider(),
+              // tileProvider: NetworkTileProvider(),
+              urlTemplate: Mapbox.urlTemplate.value,
+              fallbackUrl: Mapbox.urlTemplate.value,
+              additionalOptions: {
+                'accessToken': mapboxAccessToken!,
+                'id': 'mapbox.mapbox-streets-v8',
+              },
+              maxNativeZoom: 19,
             ),
-          ],
-        ),
-      ]),
+            MarkerLayer(
+              markers: [
+                Marker(
+                  width: 80.0,
+                  height: 80.0,
+                  point: latLng,
+                  child: const Icon(
+                    Icons.circle_outlined,
+                    color: Colors.blue,
+                    fill: 1,
+                  ),
+                ),
+              ],
+            ),
+          ]),
       floatingActionButton: FloatingActionButton.small(
         onPressed: () async {
           var position = await determinePosition();
           setState(() {
             latLng = LatLng(position.latitude, position.longitude);
+            controller.move(latLng, controller.camera.zoom);
           });
         },
         child: const Icon(Icons.my_location),
