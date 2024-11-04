@@ -21,7 +21,6 @@ extension MapboxExtension on Mapbox {
     switch (this) {
       case Mapbox.urlTemplate:
         return 'https://api.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token=$mapboxAccessToken';
-        // return 'https://api.mapbox.com/styles/v1/hoanghn190603/clzup26h600jq01qx4pzi5yub/tiles/256/{z}/{x}/{y}@2x?access_token=$mapboxAccessToken';
       case Mapbox.standardStyle:
         return 'mapbox://styles/mapbox/standard';
       case Mapbox.standardSatelliteStyle:

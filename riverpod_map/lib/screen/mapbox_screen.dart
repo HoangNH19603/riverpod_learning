@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+// import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 
 class MapboxScreen extends StatefulWidget {
@@ -12,6 +12,6 @@ class MapboxScreen extends StatefulWidget {
 class _MapboxScreenState extends State<MapboxScreen> {
   @override
   Widget build(BuildContext context) {
-    return MapWidget();
+    return const Placeholder();
   }
 }

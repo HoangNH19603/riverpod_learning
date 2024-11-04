@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
-import 'package:riverpod_map/app_constants.dart';
+// import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+// import 'package:riverpod_map/app_constants.dart';
 import 'package:riverpod_map/screen/home_screen.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
-  MapboxOptions.setAccessToken(mapboxAccessToken!);
+  // MapboxOptions.setAccessToken(mapboxAccessToken!);
   runApp(const MyApp());
 }
 
