@@ -28,16 +28,18 @@ class _PolylineScreenState extends State<PolylineScreen> {
       appBar: AppBar(
         title: const Text('Mapbox'),
       ),
-      body: FlutterMap(
-          mapController: controller,
-          options: MapOptions(
-              initialCenter: latLng,
-              initialZoom: 20,
-              minZoom: 5,
-              maxZoom: 22,
-              onMapReady: () {
-                controller.mapEventStream.listen((event) {});
-              }),
+      body: Stack(
+        children: [
+          FlutterMap(
+            mapController: controller,
+            options: MapOptions(
+                initialCenter: latLng,
+                initialZoom: 20,
+                minZoom: 5,
+                maxZoom: 22,
+                onMapReady: () {
+                  controller.mapEventStream.listen((event) {});
+                }),
           children: [
             TileLayer(
               tileProvider: CancellableNetworkTileProvider(),
@@ -56,22 +58,40 @@ class _PolylineScreenState extends State<PolylineScreen> {
                 'accessToken': mapboxAccessToken!,
               },
               maxNativeZoom: 19,
-            ),
-            MarkerLayer(
-              markers: [
-                Marker(
-                  width: 80.0,
-                  height: 80.0,
-                  point: latLng,
-                  child: const Icon(
-                    Icons.circle_outlined,
-                    color: Colors.blue,
-                    fill: 1,
+              ),
+              MarkerLayer(
+                markers: [
+                  Marker(
+                    width: 80.0,
+                    height: 80.0,
+                    point: latLng,
+                    child: const Icon(
+                      Icons.circle,
+                      color: Colors.blue,
+                      fill: 1,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
           ]),
+          GestureDetector(
+            child: SizedBox.fromSize(
+              size: const Size(50, 50),
+              child: const Icon(
+                Icons.my_location,
+                color: Colors.red,
+              ),
+            ),
+            onTap: () async {
+              var position = await determinePosition();
+              setState(() {
+                latLng = LatLng(position.latitude, position.longitude);
+                controller.move(latLng, controller.camera.zoom);
+              });
+            },
+          )
+        ],
+      ),
       floatingActionButton: FloatingActionButton.small(
         onPressed: () async {
           var position = await determinePosition();
