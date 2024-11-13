@@ -3,6 +3,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 String? mapboxAccessToken = dotenv.env['ACCESS_TOKEN'];
 
 enum Mapbox {
+  mapboxUsername,
+  mapboxCustomStyle,
+  testUsername,
   urlTemplate,
   standardStyle,
   standardSatelliteStyle,
@@ -14,13 +17,21 @@ enum Mapbox {
   satelliteStreetsStyle,
   navigationDayStyle,
   navigationNightStyle,
+  tilesize256
 }
 
 extension MapboxExtension on Mapbox {
   String get value {
     switch (this) {
+      case Mapbox.mapboxUsername:
+        return 'hoanghn190603';
+      case Mapbox.mapboxCustomStyle:
+        return 'cm3105fgb00ut01pk1myd0hme';
+      case Mapbox.testUsername:
+        return 'mapbox';
       case Mapbox.urlTemplate:
-        return 'https://api.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token=$mapboxAccessToken';
+        // return 'https://api.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token=$mapboxAccessToken';
+        return 'https://api.mapbox.com/styles/v1/{username}/{id}/tiles/{tilesize}/{z}/{x}/{y}@2x?access_token={accessToken}';
       case Mapbox.standardStyle:
         return 'mapbox://styles/mapbox/standard';
       case Mapbox.standardSatelliteStyle:
@@ -40,7 +51,9 @@ extension MapboxExtension on Mapbox {
       case Mapbox.navigationDayStyle:
         return 'mapbox://styles/mapbox/navigation-day-v1';
       case Mapbox.navigationNightStyle:
-        return 'mapbox://styles/mapbox/navigation-night-v1';
+        return 'navigation-night-v1';
+      case Mapbox.tilesize256:
+        return '256';
     }
   }
 }
