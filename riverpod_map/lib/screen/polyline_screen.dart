@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:riverpod_map/app_constants.dart';
 // import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:riverpod_map/provider/location_provider.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 
 class PolylineScreen extends StatefulWidget {
   const PolylineScreen({super.key});
@@ -54,12 +55,13 @@ class _PolylineScreenState extends State<PolylineScreen> {
               },
               maxNativeZoom: 19,
               ),
+              CurrentLocationLayer(),
               MarkerLayer(
                 markers: [
-                  Marker(point: latLng,
-                      width: 80,
-                      height: 80,
-                      child: const Icon(Icons.circle, color: Colors.blue)),
+                  // Marker(point: latLng,
+                  //     width: 80,
+                  //     height: 80,
+                  //     child: const Icon(Icons.circle, color: Colors.blue)),
                   Marker(
                     width: 80.0,
                     height: 80.0,
